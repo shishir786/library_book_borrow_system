@@ -1,0 +1,149 @@
+.id {
+  margin: auto;
+  width: 50%;
+  border: 2px solid red;
+}
+
+h1 {
+  text-align: center;
+  font-size: 45px;
+}
+
+.middle {
+  padding: 5px;
+  /* border: 2px solid red; */
+}
+
+.first {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(118, 147, 228); */
+}
+
+.box1 {
+  height: 150px;
+  width: 650px;
+  border: 5px solid burlywood;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.second {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid rgb(103, 231, 110); */
+  margin: auto 10px;
+}
+
+.box2 {
+  height: 300px;
+  width: 200px;
+  border: 5px solid rgb(194, 28, 194);
+  margin-right: 15px;
+}
+
+.third {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(138, 91, 37); */
+  margin: auto 10px;
+}
+
+.box3 {
+  height: 150px;
+  width: 650px;
+  border: 5px solid burlywood;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.forth {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid rgb(138, 91, 37); */
+  margin: auto 10px;
+}
+
+.box4 {
+  height: 400px;
+  width: 350px;
+  border: 5px solid rgb(17, 99, 194);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.box5 {
+  height: 250px;
+  width: 280px;
+  border: 5px solid rgb(218, 28, 59);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.boxSd1 {
+  height: 950px;
+  width: 250px;
+  border: 5px solid rgb(218, 28, 59);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.boxSd2 {
+  height: 950px;
+  width: 250px;
+  border: 5px solid rgb(218, 28, 59);
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.box2 img {
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  padding: 10px;
+}
+
+input {
+  width: 88%;
+  padding: 2px;
+  margin: 2px;
+  font-size: 20px;
+  border: 2px solid black;
+}
+
+select {
+  width: 90%;
+  padding: 2px;
+  margin: 2px;
+  font-size: 20px;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 200px;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgb(0, 174, 255);
+  font-size: 25px;
+}
+
+.t {
+  max-width: 50%;
+  margin: auto;
+  align-self: center;
+  font-size: large;
+}
