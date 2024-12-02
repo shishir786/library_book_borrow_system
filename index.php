@@ -75,6 +75,7 @@
                             <input type="text" name="Token" placeholder="Token Number">
                             <br>
                             <input type="date" name="RtDate" placeholder="Return Date">
+                            <input type="text" name="Fees" placeholder="Fees">
                             <input type="submit" name="submit" class="btn">
 
                         </form>
