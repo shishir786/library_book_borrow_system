@@ -81,7 +81,20 @@
                         </form>
                     </div>
                 </div>
-                <div class="box5"></div>
+
+                <div class="box5">
+                    <h4 style="text-align: center;">Token List</h4>
+                    <ul>
+                        <?php
+                        $json_data = file_get_contents('token.json');
+                        $data = json_decode($json_data, true);
+                        foreach ($data['Token'] as $token) {
+                            echo "<li>$token</li>";
+                        }
+                        ?>
+                    </ul>
+
+                </div>
             </div>
 
         </div>
