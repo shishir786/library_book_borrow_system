@@ -62,7 +62,21 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
         $interval = $borrowDate->diff($returnDate);
         $daysDifference = $interval->days;
 
-        if ($daysDifference > 10) {
+
+        // from json
+        $json_data = file_get_contents('token.json');
+        $data = json_decode($json_data, true);
+
+        if (in_array($token, $data['Token'])) {
+            $access = 1;
+        } else {
+            $access = 0;
+        }
+
+
+
+        // date validate
+        if ($daysDifference > 10 && $access == 0) {
             echo " <br><h3 style='color: red;'>Invalid: Return date is more than 10 days after borrow date</h3>";
         } elseif ($daysDifference < 1) {
             echo " <br><h3 style='color: red;'>Invalid: Return date and Borrow date cannot be same day !</h3>";
@@ -72,14 +86,17 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
 
 
 
-        if ($token != null && $id != null && $name != null && $email != null && $book != 'null' && $daysDifference <= 10) {
+        // if ($token != null && $id != null && $name != null && $email != null && $book != 'null' && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
+        //     $cookie_name = removeAllWhitespace($book);
+        //     $cookie_value = $name;
+        //     setcookie($cookie_name, $cookie_value, time() + 15);
+        // }
+
+
+        if ($id != null && $name != null && $email != null && $book != 'null' && $brDate !== null && $rtDate != null  && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
             $cookie_name = removeAllWhitespace($book);
             $cookie_value = $name;
             setcookie($cookie_name, $cookie_value, time() + 15);
-        }
-
-
-        if ($id != null && $name != null && $email != null && $book != 'null' && $brDate !== null && $rtDate != null  && $daysDifference > 0 && $daysDifference <= 10) {
 
             echo "
         <div class='Receipt'>
