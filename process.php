@@ -63,12 +63,28 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
         $daysDifference = $interval->days;
 
 
-        // from json
+
+
+        // Read the available tokens (token.json)
         $json_data = file_get_contents('token.json');
         $data = json_decode($json_data, true);
 
-        if (in_array($token, $data['Token'])) {
+        // Read the used tokens (usedToken.json)
+        $used_json_data = file_get_contents('usedToken.json');
+        $used_data = json_decode($used_json_data, true);
+
+
+
+        // Ensure the 'UsedToken' array exists
+        if (!isset($used_data['UsedToken'])) {
+            $used_data['UsedToken'] = [];
+        }
+
+
+        if (in_array($token, $data['Token']) && !in_array($token, $used_data['UsedToken'])) {
             $access = 1;
+        } elseif (in_array($token, $data['Token']) && in_array($token, $used_data['UsedToken'])) {
+            $access = 2;
         } else {
             $access = 0;
         }
@@ -78,6 +94,9 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
         // date validate
         if ($daysDifference > 10 && $access == 0) {
             echo " <br><h3 style='color: red;'>Invalid: Return date is more than 10 days after borrow date</h3>";
+        }
+        if ($daysDifference > 10 && $access == 2) {
+            echo " <br><h3 style='color: red;'>Invalid: this Token already Used</h3>";
         } elseif ($daysDifference < 1) {
             echo " <br><h3 style='color: red;'>Invalid: Return date and Borrow date cannot be same day !</h3>";
         } else {
@@ -86,11 +105,21 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
 
 
 
-        // if ($token != null && $id != null && $name != null && $email != null && $book != 'null' && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
-        //     $cookie_name = removeAllWhitespace($book);
-        //     $cookie_value = $name;
-        //     setcookie($cookie_name, $cookie_value, time() + 15);
-        // }
+        if ($daysDifference > 10) {
+            // Token usage logic: If more than 10 days, we mark the token as used
+            $key = array_search($token, $data['Token']);
+            if ($key !== false) {
+
+                // Add the token to the used tokens array
+                $used_data['UsedToken'][] = $token;
+
+                // Optionally, write the updated data back to the files
+                file_put_contents('usedToken.json', json_encode($used_data, JSON_PRETTY_PRINT));
+            }
+        }
+
+
+
 
 
         if ($id != null && $name != null && $email != null && $book != 'null' && $brDate !== null && $rtDate != null  && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
