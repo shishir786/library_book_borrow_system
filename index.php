@@ -21,7 +21,20 @@
 
 
         <div class="side1">
-            <div class="boxSd1"></div>
+            <div class="boxSd1">
+
+                <h4>Used Token List</h4>
+                <ul>
+                    <?php
+                    $json_data = file_get_contents('usedToken.json');
+                    $data = json_decode($json_data, true);
+                    foreach ($data['UsedToken'] as $token) {
+                        echo "<li>$token</li>";
+                    }
+                    ?>
+                </ul>
+
+            </div>
         </div>
 
 
