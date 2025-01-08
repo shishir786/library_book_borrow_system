@@ -21,6 +21,56 @@ h1 {
 }
 /* --------------------------------------------------  BOX 1  ---------------------------------------------------- */
 .box1 {
+  /* height: 150px;
+  width: 650px;
+  border: 5px solid burlywood;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px; */
+
+  height: 150px;
+  width: 650px;
+  border: 5px solid burlywood;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: auto; /* Enable both horizontal and vertical scrolling */
+}
+/* Table inside .box1 */
+.table-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Enable scroll if content overflows */
+}
+
+table {
+  width: 98%;
+  margin-left: 8px;
+  border-collapse: collapse;
+  table-layout: auto; /* To make sure table fits within the container */
+}
+.box1 h2 {
+  text-align: center;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  white-space: nowrap; /* Ensure that the text does not break to the next line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Display ellipsis for overflowed content */
+}
+
+/* ----------------------------------------------------------Box 1 ------------------------------------------------ */
+.box1L {
   height: 150px;
   width: 650px;
   border: 5px solid burlywood;
@@ -52,11 +102,64 @@ h1 {
 }
 /* --------------------------------------------------------  BOX 3  -------------------------------------------------------------------- */
 .box3 {
-  height: 150px;
+  height: 200px;
   width: 650px;
   border: 5px solid burlywood;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.form-heading {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 8px;
+  padding-left: 10px;
+  align-items: center;
+  height: calc(100% - 20px); /* Adjust height for the heading */
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.form-group input {
+  padding: 3px;
+  font-size: 12px;
+}
+
+.form-actions {
+  grid-column: span 2;
+  text-align: right;
+  margin-top: -30px; /* Adjust the value to move the button up */
+  margin-right: 25px;
+  padding-bottom: 5px;
+}
+
+.form-actions button {
+  padding: 8px 15px;
+  font-size: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background-color: #0056b3;
 }
 
 .forth {
@@ -128,6 +231,7 @@ h1 {
   text-align: center;
   font-size: 20px;
   font-family: "Arial", sans-serif;
+  color: red;
   font-weight: bold;
   margin-bottom: 10px;
 }

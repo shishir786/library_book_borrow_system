@@ -40,8 +40,74 @@
 
         <div class="middle">
             <div class="first">
-                <div class="box1"></div>
-                <div class="box1"></div>
+                <div class="box1">
+
+                    <h2>Books List</h2>
+                    <!-- Table wrapper with scrolling -->
+                    <div class="table-wrapper">
+                        <!-- Table to display data -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Book ID</th>
+                                    <th>Book Title</th>
+                                    <th>Author</th>
+                                    <th>ISBN</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Database connection
+                                $servername = "localhost"; // Your database server
+                                $username = "root";        // Your database username
+                                $password = "";            // Your database password
+                                $dbname = "bookborrow";          // Your database name
+
+                                // Create connection
+                                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                                // Check connection
+                                if ($conn->connect_error) {
+                                    die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                // Query to get data from the books table
+                                $sql = "SELECT BookId,Tittle, Author, ISBN, Category, Quantity FROM booklist";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    // Loop through the rows and display them in the table
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>
+                      <td>" . $row["BookId"] . "</td>
+                      <td>" . $row["Tittle"] . "</td>
+                      <td>" . $row["Author"] . "</td>
+                      <td>" . $row["ISBN"] . "</td>
+                      <td>" . $row["Category"] . "</td>
+                      <td>" . $row["Quantity"] . "</td>
+                    </tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='6'>No records found</td></tr>";
+                                }
+
+                                // Close connection
+                                $conn->close();
+                                ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="box1L"></div>
             </div>
             <div class="second">
                 <div class="box2">
@@ -56,7 +122,38 @@
             </div>
 
             <div class="third">
-                <div class="box3"></div>
+                <div class="box3">
+                    <!-- ------------------------------------box 3----------------------- -->
+
+                    <div class="form-heading">Add New Book</div>
+                    <form class="form-container" id="bookForm" onsubmit="submitForm(event)" action="bookAddProcess.php" method="post">
+                        <div class="form-group">
+                            <label for="bookTitle">Book Title</label>
+                            <input type="text" name="booksssTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" name="author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" name="isbn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input type="text" name="category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" name="quantity" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+
+
+                </div>
             </div>
             <div class="forth">
                 <div class="box4">
