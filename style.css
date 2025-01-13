@@ -21,14 +21,6 @@ h1 {
 }
 /* --------------------------------------------------  BOX 1  ---------------------------------------------------- */
 .box1 {
-  /* height: 150px;
-  width: 650px;
-  border: 5px solid burlywood;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px; */
-
   height: 150px;
   width: 650px;
   border: 5px solid burlywood;
@@ -69,15 +61,86 @@ td {
   text-overflow: ellipsis; /* Display ellipsis for overflowed content */
 }
 
-/* ----------------------------------------------------------Box 1 ------------------------------------------------ */
+.edit-btn {
+  cursor: pointer;
+  font-size: 18px; /* Adjust size */
+  color: #007bff; /* Match button color */
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.edit-btn:hover {
+  color: #0056b3; /* Darker color on hover */
+}
+
+/* ----------------------------------------------------------Box 1L ------------------------------------------------ */
 .box1L {
-  height: 150px;
-  width: 650px;
-  border: 5px solid burlywood;
+  height: 230px; /* Increased height */
+  width: 660px; /* Increased width */
+  border: 5px solid rgb(29, 84, 204);
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.form-heading {
+  text-align: center;
+  font-size: 14px; /* Adjusted font size */
+  font-weight: bold;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px; /* Slightly larger spacing for readability */
+  padding: 10px;
+  flex-grow: 1; /* Make form content fill available space */
+  align-content: start; /* Align form content at the top */
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 12px; /* Adjusted font size */
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.form-actions {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* Spacing between buttons */
+  margin-top: 10px;
+}
+
+.form-actions button {
+  padding: 6px 12px; /* Increased padding for buttons */
+  font-size: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background-color: #0056b3;
 }
 
 .second {
@@ -90,7 +153,7 @@ td {
 .box2 {
   height: 300px;
   width: 200px;
-  border: 5px solid rgb(194, 28, 194);
+  border: 5px solid rgb(15, 233, 196);
   margin-right: 15px;
 }
 
@@ -102,7 +165,7 @@ td {
 }
 /* --------------------------------------------------------  BOX 3  -------------------------------------------------------------------- */
 .box3 {
-  height: 200px;
+  height: 230px;
   width: 650px;
   border: 5px solid burlywood;
   margin-bottom: 10px;
@@ -173,9 +236,39 @@ td {
   height: 400px;
   width: 350px;
   border: 5px solid rgb(17, 99, 194);
+  border-radius: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-right: 10px;
+}
+
+.form {
+  padding: 10px;
+}
+
+input {
+  width: 88%;
+  padding: 2px;
+  margin: 2px;
+  font-size: 20px;
+  border: 2px solid black;
+}
+
+select {
+  width: 90%;
+  padding: 2px;
+  margin: 2px;
+  font-size: 20px;
+}
+
+.btnSub {
+  margin-top: 10px;
+  width: 200px;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgb(0, 174, 255);
+  font-size: 25px;
 }
 
 /* -----------------------------------------------------------------  BOX 5  ------------------------------------------------------ */
@@ -183,6 +276,7 @@ td {
   height: 400px;
   width: 280px;
   border: 5px solid rgb(111, 205, 28);
+  border-radius: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -219,9 +313,10 @@ td {
 /* ---------------------------------------------------------------  BOX Side 1  ---------------------------------------------------------- */
 
 .boxSd1 {
-  height: 950px;
+  height: 980px;
   width: 250px;
   border: 5px solid rgb(218, 28, 59);
+  border-radius: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-right: 10px;
@@ -258,12 +353,102 @@ td {
 }
 /* ------------------------------------------------------------------  BOX Side 2  -------------------------------------------------------------- */
 .boxSd2 {
-  height: 950px;
+  height: 980px;
   width: 250px;
   border: 5px solid rgb(218, 28, 59);
+  border-radius: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
+/* Library Box Styles */
+.library-box {
+  height: 980px;
+  width: 250px;
+  background: linear-gradient(145deg, #a07f64, #e5c59f);
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  animation: glow 5s infinite alternate;
+  transition: all 0.3s ease-in-out;
+}
+
+.library-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Rotating Icon */
+.rotating-icon {
+  font-size: 60px; /* Larger font for visibility */
+  animation: spin 6s linear infinite;
+  color: #ffffff; /* Bright white color */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Stronger shadow for contrast */
+  margin-bottom: 20px;
+}
+
+/* Welcome Text */
+.welcome-text {
+  font-size: 18px; /* Larger font for readability */
+  color: #000000; /* Bright white color */
+  text-align: center;
+  padding: 0 10px;
+  text-shadow: 0 4px 8px rgba(12, 247, 255, 0.6); /* Stronger shadow for better readability */
+  animation: fadeIn 2s ease-in-out;
+  margin-bottom: 10px;
+}
+
+/* Motivational Text */
+.motivational-text {
+  font-size: 14px;
+  font-style: italic;
+  color: #000000; /* Softer color for variety */
+  text-align: center;
+  padding: 0 10px;
+  text-shadow: 0 2px 4px rgba(68, 119, 246, 0.5);
+  animation: fadeIn 3s ease-in-out;
+  line-height: 1.8; /* Added line height for better spacing */
+}
+
+.motivational-text p {
+  margin: 5px 0; /* Spacing between lines */
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 15px #ffdab9, inset 0 0 10px #ffe4b5;
+  }
+  100% {
+    box-shadow: 0 0 30px #ffcc99, inset 0 0 15px #ffcc99;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* --------------------------------------------------------------------  ######  ----------------------------------------------------------------------- */
 .container {
   width: 50%;
@@ -275,35 +460,6 @@ td {
 .box2 img {
   height: 100%;
   width: 100%;
-}
-
-.form {
-  padding: 10px;
-}
-
-input {
-  width: 88%;
-  padding: 2px;
-  margin: 2px;
-  font-size: 20px;
-  border: 2px solid black;
-}
-
-select {
-  width: 90%;
-  padding: 2px;
-  margin: 2px;
-  font-size: 20px;
-}
-
-.btn {
-  margin-top: 10px;
-  width: 200px;
-  height: 35px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  background-color: rgb(0, 174, 255);
-  font-size: 25px;
 }
 
 .t {

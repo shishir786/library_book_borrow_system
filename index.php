@@ -41,7 +41,6 @@
         <div class="middle">
             <div class="first">
                 <div class="box1">
-
                     <h2>Books List</h2>
                     <!-- Table wrapper with scrolling -->
                     <div class="table-wrapper">
@@ -55,15 +54,16 @@
                                     <th>ISBN</th>
                                     <th>Category</th>
                                     <th>Quantity</th>
+                                    <th>Actions</th> <!-- New column for Edit button -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 // Database connection
-                                $servername = "localhost"; // Your database server
-                                $username = "root";        // Your database username
-                                $password = "";            // Your database password
-                                $dbname = "bookborrow";          // Your database name
+                                $servername = "localhost";
+                                $username = "root";
+                                $password = "";
+                                $dbname = "bookborrow";
 
                                 // Create connection
                                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -74,40 +74,80 @@
                                 }
 
                                 // Query to get data from the books table
-                                $sql = "SELECT BookId,Tittle, Author, ISBN, Category, Quantity FROM booklist";
+                                $sql = "SELECT BookId, Tittle, Author, ISBN, Category, Quantity FROM booklist";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     // Loop through the rows and display them in the table
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>
-                      <td>" . $row["BookId"] . "</td>
-                      <td>" . $row["Tittle"] . "</td>
-                      <td>" . $row["Author"] . "</td>
-                      <td>" . $row["ISBN"] . "</td>
-                      <td>" . $row["Category"] . "</td>
-                      <td>" . $row["Quantity"] . "</td>
-                    </tr>";
+            <td>" . $row["BookId"] . "</td>
+            <td>" . $row["Tittle"] . "</td>
+            <td>" . $row["Author"] . "</td>
+            <td>" . $row["ISBN"] . "</td>
+            <td>" . $row["Category"] . "</td>
+            <td>" . $row["Quantity"] . "</td>
+            <td>
+                <span class='edit-btn' 
+                    data-bookid='" . $row["BookId"] . "' 
+                    data-tittle='" . $row["Tittle"] . "' 
+                    data-author='" . $row["Author"] . "' 
+                    data-isbn='" . $row["ISBN"] . "' 
+                    data-category='" . $row["Category"] . "' 
+                    data-quantity='" . $row["Quantity"] . "'
+                    title='Edit'>📝</span>
+            </td>
+        </tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='6'>No records found</td></tr>";
+                                    echo "<tr><td colspan='7'>No records found</td></tr>";
                                 }
 
                                 // Close connection
                                 $conn->close();
                                 ?>
+
+
+                                <script src="formH.js"></script>
                             </tbody>
                         </table>
-
                     </div>
-
-
-
-
-
-
                 </div>
-                <div class="box1L"></div>
+                <!-- ------------------------------------------------ -->
+                <div class="box1L">
+                    <div class="form-heading">Edit Book Details</div>
+                    <form id="edit-form" action="edit_book.php" method="post" class="form-container" style="display: none;">
+                        <!-- Hidden field for BookId -->
+                        <input type="hidden" name="BookId" id="BookId">
+
+                        <div class="form-group">
+                            <label for="Tittle">Title</label>
+                            <input type="text" name="Tittle" id="Tittle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Author">Author</label>
+                            <input type="text" name="Author" id="Author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ISBN">ISBN</label>
+                            <input type="text" name="ISBN" id="ISBN" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <input type="text" name="Category" id="Category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Quantity">Quantity</label>
+                            <input type="number" name="Quantity" id="Quantity" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="hideForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
             <div class="second">
                 <div class="box2">
@@ -186,7 +226,7 @@
                             <br>
                             <input type="date" name="RtDate" placeholder="Return Date">
                             <input type="text" name="Fees" placeholder="Fees">
-                            <input type="submit" name="submit" class="btn">
+                            <input type="submit" name="submit" class="btnSub">
 
                         </form>
                     </div>
@@ -210,7 +250,23 @@
         </div>
 
         <div class="side2">
-            <div class="boxSd2"></div>
+            <div class="boxSd2">
+
+                <div class="library-box">
+                    <div class="rotating-icon">📚</div>
+                    <p class="welcome-text">"A room without books is like a body without a soul."</p>
+                    <div class="motivational-text">
+                        <p>"Fuel your mind, one page at a time."</p>
+                        <p>"Dive into the adventures, knowledge, and wonders waiting within."</p>
+                        <p>"The more you read, the more you know, the more you grow."</p>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
         </div>
 
     </div>
