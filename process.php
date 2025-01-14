@@ -114,11 +114,6 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
             $key = array_search($token, $data['Token']);
             if ($key !== false) {
 
-                // // Add the token to the used tokens array
-                // $used_data['UsedToken'][] = $token;
-                // // Optionally, write the updated data back to the files
-                // file_put_contents('usedToken.json', json_encode($used_data, JSON_PRETTY_PRINT));
-
                 // Check if the token already exists in the UsedToken array
                 if (!in_array($token, $used_data['UsedToken'])) {
                     // Add the token to the UsedToken array if it's not already present
@@ -131,13 +126,11 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
                 }
 
 
-                ///----------------------------------------------------------------
-                ///
+                ///-------------------------------------------------------------------------------------------------
+
                 // genarate a random token every time a token have been used
-                ///
 
                 $filePath = 'token.json'; // Define file path
-
                 // Function to generate a new token
                 if (!function_exists('generateNewToken')) {
                     function generateNewToken()
@@ -185,7 +178,7 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
 
 
 
-        // ----------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------------------
         // recipt genarate
         if ($id != null && $name != null && $email != null && $book != 'null' && $brDate !== null && $rtDate != null  && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
             $cookie_name = removeAllWhitespace($book);
