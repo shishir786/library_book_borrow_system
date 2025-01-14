@@ -103,25 +103,90 @@ if (isset($_POST['submit']) && isset($_COOKIE[$cookie_name])) {
             $rtDate = $_POST['RtDate'];
         }
 
-
+        // Function to generate a new token
+        function generateNewToken()
+        {
+            return rand(100, 999); // Generate a random 3-digit number
+        }
 
         if ($daysDifference > 10) {
             // Token usage logic: If more than 10 days, we mark the token as used
             $key = array_search($token, $data['Token']);
             if ($key !== false) {
 
-                // Add the token to the used tokens array
-                $used_data['UsedToken'][] = $token;
+                // // Add the token to the used tokens array
+                // $used_data['UsedToken'][] = $token;
+                // // Optionally, write the updated data back to the files
+                // file_put_contents('usedToken.json', json_encode($used_data, JSON_PRETTY_PRINT));
 
-                // Optionally, write the updated data back to the files
-                file_put_contents('usedToken.json', json_encode($used_data, JSON_PRETTY_PRINT));
+                // Check if the token already exists in the UsedToken array
+                if (!in_array($token, $used_data['UsedToken'])) {
+                    // Add the token to the UsedToken array if it's not already present
+                    $used_data['UsedToken'][] = $token;
+                    // Write the updated data back to the file
+                    file_put_contents('usedToken.json', json_encode($used_data, JSON_PRETTY_PRINT));
+                } else {
+                    // If token already exists, no changes are made
+                    //echo "Token already exists, no changes made.";
+                }
+
+
+                ///----------------------------------------------------------------
+                ///
+                // genarate a random token every time a token have been used
+                ///
+
+                $filePath = 'token.json'; // Define file path
+
+                // Function to generate a new token
+                if (!function_exists('generateNewToken')) {
+                    function generateNewToken()
+                    {
+                        return rand(100, 999); // Random 3-digit token
+                    }
+                }
+
+                if (file_exists($filePath)) {
+                    $jsonContent = file_get_contents($filePath);   // File exists, read content
+                    $dataa = json_decode($jsonContent, true); // Decode JSON 
+
+                    if (isset($dataa['Token']) && is_array($dataa['Token'])) {
+                        // Add a new token to the existing array
+                        $newToken = generateNewToken();
+                        $dataa['Token'][] = $newToken;
+
+                        // Encode the updated data and save back to the file
+                        $updatedJson = json_encode($dataa, JSON_PRETTY_PRINT);
+                        if (file_put_contents($filePath, $updatedJson) !== false) {
+                            //echo "New token $newToken added successfully!\n";
+                        } else {
+                            //echo "Failed to write to the file. Check file path and permissions.\n";
+                        }
+                    } else {
+                        // If 'Token' is missing or not an array, initialize it
+                        //echo "Invalid JSON structure. Reinitializing tokens.\n";
+                        $dataa = ['Token' => [generateNewToken()]];
+                        $updatedJson = json_encode($dataa, JSON_PRETTY_PRINT);
+                        file_put_contents($filePath, $updatedJson);
+                    }
+                } else {
+                    $initialData = ['Token' => [generateNewToken()]]; // File doesn't exist, create a new one
+                    $initialJson = json_encode($initialData, JSON_PRETTY_PRINT);
+
+                    // Attempt to write
+                    if (file_put_contents($filePath, $initialJson) !== false) {
+                        // echo "File created and initialized successfully.\n";
+                    } else {
+                        // echo "Failed to create the file. Check file path and permissions.\n";
+                    }
+                }
             }
         }
 
 
 
-
-
+        // ----------------------------------------------------------------
+        // recipt genarate
         if ($id != null && $name != null && $email != null && $book != 'null' && $brDate !== null && $rtDate != null  && $daysDifference > 0 && ($daysDifference <= 10 || $daysDifference > 10 && $access == 1)) {
             $cookie_name = removeAllWhitespace($book);
             $cookie_value = $name;

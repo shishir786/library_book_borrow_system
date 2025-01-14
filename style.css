@@ -34,7 +34,7 @@ h1 {
 .table-wrapper {
   height: 100%;
   width: 100%;
-  overflow: auto; /* Enable scroll if content overflows */
+  /* Enable scroll if content overflows */
 }
 
 table {
@@ -279,6 +279,7 @@ select {
   border-radius: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
+  overflow-y: auto; /* Enables vertical scrolling */
 }
 
 .box5 h4 {
@@ -292,6 +293,7 @@ select {
 .box5 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0; /* Ensures no extra space around the list */
 }
 
 /* Style each list item */
